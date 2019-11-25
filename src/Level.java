@@ -20,7 +20,7 @@ public class Level {
 	public ArrayList<Makanan> makanan;
 	public ArrayList<Musuh> musuh;
         public ArrayList<Slowing> slowing;
-        public ArrayList<Confuse> confuse;
+    public ArrayList<Confuse> confuse;
 	public Tile [][] tiles;
 	public Level (String path) {
 		makanan = new ArrayList<>();
