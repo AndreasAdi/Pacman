@@ -20,12 +20,13 @@ public class Level {
 	public ArrayList<Makanan> makanan;
 	public ArrayList<Musuh> musuh;
         public ArrayList<Slowing> slowing;
-	
+	public ArrayList<Confuse> confuse;
 	public Tile [][] tiles;
 	public Level (String path) {
 		makanan = new ArrayList<>();
 		musuh = new ArrayList<>();
                 slowing = new ArrayList<>();
+                confuse=new ArrayList<>();
 		try {
 			BufferedImage map = ImageIO.read(getClass().getResource(path));
 			this.width = map.getWidth();
@@ -58,6 +59,10 @@ public class Level {
                                         else if (val== 0xFF00FF00) {
                                             //Slowing 
                                                 slowing.add(new Slowing(xx*32, yy*32));
+                                        }
+                                        else if (val==0xFFFFF600){//power up stroberi
+                                            confuse.add(new Confuse(xx*32,yy*32));
+                                            //System.out.println("asd");
                                         }
 					else{					
 						makanan.add(new Makanan(xx*32, yy*32));
@@ -92,6 +97,9 @@ public class Level {
 			}
                         for (Slowing s :slowing) {
                             s.render(g);
+                    }
+                     for (Confuse c : confuse) {
+                        c.render(g);
                     }
 
 		}
