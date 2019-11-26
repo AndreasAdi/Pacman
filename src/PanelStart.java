@@ -22,7 +22,7 @@ public class PanelStart extends javax.swing.JPanel {
      */
     public PanelStart() {
         initComponents();
-        this.setBackground(Color.black);
+        this.setBackground(new Color(30,0,127));
     }
 
     @Override
@@ -31,7 +31,7 @@ public class PanelStart extends javax.swing.JPanel {
      try {
             Image img;
             img=ImageIO.read(new File("Src\\Char\\title.png"));
-            g.drawImage(img, 92, 46, 182, 46, null, this);
+            g.drawImage(img, 46, 46, 273, 69, null, this);
         } catch (Exception e) {
         }
     }
