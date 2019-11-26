@@ -8,7 +8,7 @@
  *
  * @author Enrico
  */
-public class Highscore {
+public class Highscore implements Comparable{
     String nama;
 
     public Highscore(String nama, int score) {
@@ -32,4 +32,10 @@ public class Highscore {
         this.score = score;
     }
     int score;
+
+    @Override
+    public int compareTo(Object o) {
+        Highscore h = (Highscore)o;
+        return (score-h.getScore())*-1;
+    }
 }

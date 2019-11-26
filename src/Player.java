@@ -22,6 +22,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.logging.Logger;
 import javax.swing.Timer;
 
@@ -49,6 +51,12 @@ public class Player extends Rectangle {
     public static ArrayList <Highscore> highscore= new ArrayList<>();
     public Player(int x, int y) {
         setBounds(x, y, 32, 32);
+        
+        Player.highscore.add(new Highscore("", 0));
+        Player.highscore.add(new Highscore("", 0));
+        Player.highscore.add(new Highscore("", 0));
+        Player.highscore.add(new Highscore("", 0));
+        Player.highscore.add(new Highscore("", 0));
     }
 
     public void tick() {
@@ -125,19 +133,23 @@ public class Player extends Rectangle {
                 musickalah();
                 String namaplayer= JOptionPane.showInputDialog("Nama Player");
                 highscore.add(new Highscore(namaplayer, Game.Score));
-                System.out.println(namaplayer);
+                sort();
+                System.out.println(highscore.get(5).getNama()+"-"+highscore.get(5).getScore());
                 int retry = JOptionPane.showConfirmDialog(null, "Retry", "Game Over", JOptionPane.YES_NO_OPTION);
                 
                 if (retry == JOptionPane.YES_OPTION) {
                     Game.player = new Player(0, 0);
                     Game.level = new Level("/Map/map.png");
-                    
+                    AudioPlayer.player.start(Game.sound);
                     Game.Score=0;
                 } else if (retry == JOptionPane.NO_OPTION) {
                     System.exit(1);
                 }
             }
         }
+    }
+    void sort(){
+        Collections.sort(highscore);
     }
     void musickalah(){
 

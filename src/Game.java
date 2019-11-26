@@ -30,7 +30,7 @@ import sun.audio.ContinuousAudioDataStream;
 public class Game extends Canvas implements Runnable, KeyListener {
 
     private boolean isrunning = false;
-    public static final int width = 800, height = 480;
+    public static final int width = 850, height = 480;
     public static final String Title = "Puck-Man";
     public static int Score = 0;
     private Thread thread;
@@ -43,10 +43,11 @@ public class Game extends Canvas implements Runnable, KeyListener {
         setPreferredSize(dimension);
         setMinimumSize(dimension);
         setMaximumSize(dimension);
-
         addKeyListener(this);
         player = new Player(Game.width / 2, Game.height / 2);
         level = new Level("/Map/map.png");
+        Diffuclty d = new Diffuclty();
+        d.setVisible(true);
         load_song();
     }
     public void load_song()
@@ -88,7 +89,8 @@ public class Game extends Canvas implements Runnable, KeyListener {
         player.tick();
         level.tick();
     }
-
+    
+    int j=0;
     private void render() {
         BufferStrategy bS = getBufferStrategy();
         if (bS == null) {
@@ -101,15 +103,40 @@ public class Game extends Canvas implements Runnable, KeyListener {
         Font a = new Font("Arial", Font.BOLD, 20);
         graphics.setFont(a);
         graphics.setColor(Color.YELLOW);
-        graphics.drawString("score: " + Score, 680, 20);
-
+        graphics.drawString("score: " + Score, 650, 20);
+         graphics.drawString("________________________" , 641, 35);
+        graphics.drawString("Highscore: ", 650, 60);
         // graphics.drawS
+         for (int i = 0; i < 5; i++) {
+            j=j+20;
+            graphics.setColor(Color.YELLOW);
+            graphics.drawString((i+1)+". " + Player.highscore.get(i).getNama()+" - "+Player.highscore.get(i).getScore(), 650, 60+j);
+            if (i==4) {
+                j =0;
+            }
+        }
         player.render(graphics);
         level.render(graphics);
         graphics.dispose();
         bS.show();
     }
-
+    private void score(){
+        BufferStrategy b = getBufferStrategy();
+        if (b == null) {
+            createBufferStrategy(3);
+            return;
+        }
+        Graphics graphics = b.getDrawGraphics();
+        Font a = new Font("Arial", Font.BOLD, 20);
+        graphics.setFont(a);
+        for (int i = 0; i < 5; i++) {
+            j=j+20;
+            graphics.setColor(Color.YELLOW);
+            graphics.drawString(i+". " + Player.highscore.get(i).getNama()+" - "+Player.highscore.get(i).getNama(), 680, 40+j);
+        }
+        graphics.dispose();
+        b.show();
+    }
     @Override
     public void run() {
         requestFocus();
