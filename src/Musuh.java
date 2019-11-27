@@ -20,6 +20,10 @@ import java.util.Timer;
 import javax.imageio.ImageIO;
 
 public class Musuh extends Rectangle{
+
+    public void setState(int state) {
+        this.state = state;
+    }
 	
 	public Musuh(int x, int y) {
 		r = new Random();
@@ -27,6 +31,7 @@ public class Musuh extends Rectangle{
 		dir = r.nextInt(5);
 	}
 	public Image img;
+        public static String pathimage= "Src\\Char\\ghost_0_0.png";
 	private int Random = 0,smart =1, find_path =2;
 	private int state = smart;
 	private int right =0 , left = 1, up = 2, down = 3;
@@ -41,7 +46,7 @@ public class Musuh extends Rectangle{
 	
 	public void render(Graphics g) {
 		try {
-			img = ImageIO.read(new File("Src\\Char\\ghost_0_0.png"));
+			img = ImageIO.read(new File(pathimage));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -108,13 +113,13 @@ public class Musuh extends Rectangle{
 					dir = r.nextInt(4);
 				}
 			} 			
-			time ++;
+			//time ++;
 			//System.out.println(time);
 		}
-		if (time == targetTime) {
-			state = smart;
-			time =0;
-		}
+//		if (time == targetTime) {
+//			state = smart;
+//			time =0;
+//		}
 		if (state==smart) {
 			
 	

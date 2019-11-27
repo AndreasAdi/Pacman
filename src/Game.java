@@ -40,6 +40,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
     public static ContinuousAudioDataStream sound; 
     public static Game game;
     public static JFrame frame;
+    public static String pathlagu ="xx.wav";
     public Game() {
         Dimension dimension = new Dimension(Game.width, Game.height);
         setPreferredSize(dimension);
@@ -47,20 +48,25 @@ public class Game extends Canvas implements Runnable, KeyListener {
         setMaximumSize(dimension);
         addKeyListener(this);
         player = new Player(Game.width / 2, Game.height / 2);
-        level = new Level("/Map/map.png");
+        //level = new Level("/Map/map.png");
         Diffuclty d = new Diffuclty();
         d.setVisible(true);
-        load_song();
+        load_song(pathlagu);
     }
-    public void load_song()
+    public static void load_song(String path)
     {
         try {
-            data = new AudioStream(new FileInputStream("xx.wav")).getData();
+            data = new AudioStream(new FileInputStream(path)).getData();
             sound= new ContinuousAudioDataStream(data);
             AudioPlayer.player.start(sound);
         } catch (Exception ex) {
             Logger.getLogger(Game.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+    }
+    
+    public static void stop_song(){
+    
+    AudioPlayer.player.stop(sound);
     }
     public synchronized void start() {
         if (isrunning) {

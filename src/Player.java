@@ -45,9 +45,12 @@ public class Player extends Rectangle {
     private int speed = 4;
     public Image img;
     public Timer t;
-    public static boolean cekpowerup;
+    public static boolean cekstoping;
+    public static boolean cekconfuse;
     int Waktu = 0;
+    int Waktu2 = 0;
     public static AudioStream sound; 
+    public Level level; 
     public static ArrayList <Highscore> highscore= new ArrayList<>();
     public Player(int x, int y) {
         setBounds(x, y, 32, 32);
@@ -60,71 +63,25 @@ public class Player extends Rectangle {
     }
 
     public void tick() {
+        level = Game.level;
+        cekgerak();
+        cek_makan();
+        cek_stoping();
+        cek_Confuse();
+        cek_kalah();
 
-        if (left && canmove(x - speed, y)) {
-            x -= speed;
-        }
-        if (right && canmove(x + speed, y)) {
-            x += speed;
-        }
-        if (up && canmove(x, y - speed)) {
-            y -= speed;
-        }
-        if (down && canmove(x, y + speed)) {
-            y += speed;
-        }
-
-        Level level = Game.level;
-
-        for (int i = 0; i < level.makanan.size(); i++) {
-            if (this.intersects(level.makanan.get(i))) {
-                level.makanan.remove(i);
-                Game.Score += 10;
-                break;
-            }
-        }
-
-        for (int i = 0; i < level.slowing.size(); i++) {
-
-            t = new Timer(1000, new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    if (cekpowerup == true) {
-
-                        System.out.println(Waktu);
-                        for (Musuh M : level.musuh) {
-                            if (Waktu <= 0) {
-                                M.spd = 0;
-                            } else if (Waktu == 5) {
-                                M.spd = 2;
-                                t.stop();
-
-                                cekpowerup = false;
-                            }
-                        }
-                        Waktu++;
-                    }
-                }
-
-            });
-            if (this.intersects(level.slowing.get(i))) {
-                level.slowing.remove(i);
-                //Game.Score +=10;
-                Waktu = 0;
-                cekpowerup = true;
-                t.start();
-                break;
-            }
-
-        }
-
-        if (level.makanan.size() == 0) {
+    }
+    
+    void cek_menang(){
+            if (level.makanan.size() == 0) {
             //win reset permainan
             Game.player = new Player(0, 0);
             Game.level = new Level("/Map/map.png");
         }
-
-        // Pengecekan Kalah
+    }
+    
+    void cek_kalah(){
+            // Pengecekan Kalah
         for (int i = 0; i < level.musuh.size(); i++) {
             if (this.intersects(level.musuh.get(i))) {
                 //Game.player = new Player(0, 0);
@@ -151,6 +108,113 @@ public class Player extends Rectangle {
             }
         }
     }
+    
+    void cekgerak(){
+            if (left && canmove(x - speed, y)) {
+            x -= speed;
+        }
+        if (right && canmove(x + speed, y)) {
+            x += speed;
+        }
+        if (up && canmove(x, y - speed)) {
+            y -= speed;
+        }
+        if (down && canmove(x, y + speed)) {
+            y += speed;
+        }
+    }
+    void cek_stoping(){
+            //powerup slowing
+        for (int i = 0; i < level.slowing.size(); i++) {
+
+            t = new Timer(1000, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (cekstoping == true) {
+
+                        System.out.println(Waktu);
+                        for (Musuh M : level.musuh) {
+                            if (Waktu <= 0) {
+                                M.spd = 0;
+                                Musuh.pathimage = "Src\\Char\\diam.png";
+                            } else if (Waktu == 5) {
+                                Musuh.pathimage ="Src\\Char\\ghost_0_0.png";
+                                M.spd = 2;
+                                t.stop();
+                                
+                                cekstoping = false;
+                            }
+                        }
+                        Waktu++;
+                    }
+                }
+
+            });
+            if (this.intersects(level.slowing.get(i))) {
+                level.slowing.remove(i);
+                //Game.Score +=10;
+                Waktu = 0;
+                cekstoping = true;
+                t.start();
+                break;
+            }
+            
+        }
+    }
+    
+    
+    
+        void cek_Confuse(){
+            //powerup slowing
+        for (int i = 0; i < level.confuse.size(); i++) {
+
+            t = new Timer(1000, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (cekconfuse == true) {
+
+                        System.out.println(Waktu2);
+                        for (Musuh M : level.musuh) {
+                            if (Waktu2 <= 0) {
+                              Musuh.pathimage = "Src\\Char\\bingung.png";
+                               M.setState(0);
+                            } else if (Waktu2 == 5) {
+                              Musuh.pathimage ="Src\\Char\\ghost_0_0.png";
+                               M.setState(1);
+                                t.stop();
+
+                                cekconfuse = false;
+                            }
+                        }
+                        Waktu2++;
+                    }
+                }
+
+            });
+            if (this.intersects(level.confuse.get(i))) {
+                level.confuse.remove(i);
+                //Game.Score +=10;
+                Waktu2 = 0;
+                cekconfuse = true;
+                t.start();
+                break;
+            }
+            
+        }
+    }
+    
+    
+    void cek_makan(){
+            // makan
+        for (int i = 0; i < level.makanan.size(); i++) {
+            if (this.intersects(level.makanan.get(i))) {
+                level.makanan.remove(i);
+                Game.Score += 10;
+                musicmakan();
+                break;
+            }
+        }
+    }
     void sort(){
         Collections.sort(highscore);
     }
@@ -159,6 +223,29 @@ public class Player extends Rectangle {
         AudioInputStream in= null;
         try {
             File soundfile= new File("die.wav");
+            in = AudioSystem.getAudioInputStream(soundfile);
+            Clip c=AudioSystem.getClip();
+            c.open(in);
+            c.start();
+        } catch (UnsupportedAudioFileException ex) {
+            Logger.getLogger(Player.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Player.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (LineUnavailableException ex) {
+            Logger.getLogger(Player.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } finally {
+            try {
+                in.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Player.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    void musicmakan(){
+            AudioInputStream in= null;
+        try {
+            File soundfile= new File("eating.wav");
             in = AudioSystem.getAudioInputStream(soundfile);
             Clip c=AudioSystem.getClip();
             c.open(in);
