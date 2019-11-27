@@ -1,5 +1,7 @@
+
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import sun.audio.AudioPlayer;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -73,6 +75,11 @@ public class Diffuclty extends javax.swing.JFrame {
 
         bthard.setBackground(new java.awt.Color(255, 0, 51));
         bthard.setText("HARD");
+        bthard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bthardMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelStart2Layout = new javax.swing.GroupLayout(panelStart2);
         panelStart2.setLayout(panelStart2Layout);
@@ -89,7 +96,7 @@ public class Diffuclty extends javax.swing.JFrame {
         panelStart2Layout.setVerticalGroup(
             panelStart2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelStart2Layout.createSequentialGroup()
-                .addContainerGap(147, Short.MAX_VALUE)
+                .addContainerGap(172, Short.MAX_VALUE)
                 .addComponent(bteasy, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btmedium, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -106,7 +113,7 @@ public class Diffuclty extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelStart2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(panelStart2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -118,8 +125,12 @@ public class Diffuclty extends javax.swing.JFrame {
         dif ="/Map/map_medium.png";
         Game.level = new Level(dif);
         Game.game.start();
+        Game.stop_song();
+        Game.load_song("xx.wav ");// untuk ganti musik 
         Game.frame.setVisible(true);
         this.setVisible(false);
+        
+        
     }//GEN-LAST:event_btmediumMouseClicked
 
     private void bteasyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bteasyMouseClicked
@@ -127,9 +138,22 @@ public class Diffuclty extends javax.swing.JFrame {
         dif ="/Map/map_easy.png";
         Game.level = new Level(dif);
         Game.game.start();
+        Game.stop_song();
+        Game.load_song("xx.wav ");// untuk ganti musik 
         Game.frame.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_bteasyMouseClicked
+
+    private void bthardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bthardMouseClicked
+        // TODO add your handling code here:
+        dif ="/Map/map_hard.png";
+        Game.level = new Level(dif);
+        Game.game.start();
+        Game.stop_song();
+        Game.load_song("xx.wav ");// untuk ganti musik
+        Game.frame.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_bthardMouseClicked
 
     /**
      * @param args the command line arguments
