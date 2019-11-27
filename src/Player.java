@@ -139,7 +139,10 @@ public class Player extends Rectangle {
                 
                 if (retry == JOptionPane.YES_OPTION) {
                     Game.player = new Player(0, 0);
-                    Game.level = new Level("/Map/map.png");
+                    //Game.level = new Level("/Map/map.png");
+                    Diffuclty d = new Diffuclty();
+                    d.setVisible(true);
+                    Game.frame.setVisible(false);
                     AudioPlayer.player.start(Game.sound);
                     Game.Score=0;
                 } else if (retry == JOptionPane.NO_OPTION) {
