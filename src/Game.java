@@ -38,6 +38,8 @@ public class Game extends Canvas implements Runnable, KeyListener {
     public static Level level;
     public static AudioData data;
     public static ContinuousAudioDataStream sound; 
+    public static Game game;
+    public static JFrame frame;
     public Game() {
         Dimension dimension = new Dimension(Game.width, Game.height);
         setPreferredSize(dimension);
@@ -170,8 +172,8 @@ public class Game extends Canvas implements Runnable, KeyListener {
     }
 
     public static void main(String[] args) {
-        Game game = new Game();
-        JFrame frame = new JFrame();
+        game = new Game();
+        frame = new JFrame();
         frame.setTitle(Game.Title);
         frame.add(game);
         frame.setFocusable(true);
@@ -180,9 +182,9 @@ public class Game extends Canvas implements Runnable, KeyListener {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
 
-        frame.setVisible(true);
+       // frame.setVisible(true);
 
-        game.start();
+       // game.start();
     }
 
     @Override

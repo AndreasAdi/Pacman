@@ -111,10 +111,10 @@ public class Musuh extends Rectangle{
 			time ++;
 			//System.out.println(time);
 		}
-//		if (time == targetTime) {
-//			state = smart;
-//			time =0;
-//		}
+		if (time == targetTime) {
+			state = smart;
+			time =0;
+		}
 		if (state==smart) {
 			
 	

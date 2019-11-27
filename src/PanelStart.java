@@ -21,8 +21,10 @@ public class PanelStart extends javax.swing.JPanel {
      * Creates new form PanelStart
      */
     public PanelStart() {
+        this.setFocusable(true);
         initComponents();
         this.setBackground(new Color(30,0,127));
+        requestFocus();
     }
 
     @Override

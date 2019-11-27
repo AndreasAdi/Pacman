@@ -1,8 +1,5 @@
-
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.image.BufferStrategy;
-import javax.swing.JFrame;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -20,6 +17,8 @@ public class Diffuclty extends javax.swing.JFrame {
      */
     public Diffuclty() {
    
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setResizable(false);
         initComponents();
        
         
@@ -57,6 +56,11 @@ public class Diffuclty extends javax.swing.JFrame {
         bteasy.setBackground(new java.awt.Color(102, 255, 51));
         bteasy.setText("EASY");
         bteasy.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        bteasy.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bteasyMouseClicked(evt);
+            }
+        });
 
         btmedium.setBackground(new java.awt.Color(255, 255, 0));
         btmedium.setText("MEDIUM");
@@ -100,14 +104,23 @@ public class Diffuclty extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bteasyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bteasyMouseClicked
+        // TODO add your handling code here:
+        Game.game.start();
+        Game.frame.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_bteasyMouseClicked
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        
+//<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
