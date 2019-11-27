@@ -35,7 +35,7 @@ public class Diffuclty extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        panelStart1 = new PanelStart();
+        panelStart2 = new PanelStart();
         bteasy = new javax.swing.JButton();
         btmedium = new javax.swing.JButton();
         bthard = new javax.swing.JButton();
@@ -74,21 +74,21 @@ public class Diffuclty extends javax.swing.JFrame {
         bthard.setBackground(new java.awt.Color(255, 0, 51));
         bthard.setText("HARD");
 
-        javax.swing.GroupLayout panelStart1Layout = new javax.swing.GroupLayout(panelStart1);
-        panelStart1.setLayout(panelStart1Layout);
-        panelStart1Layout.setHorizontalGroup(
-            panelStart1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelStart1Layout.createSequentialGroup()
-                .addGap(98, 98, 98)
-                .addGroup(panelStart1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelStart2Layout = new javax.swing.GroupLayout(panelStart2);
+        panelStart2.setLayout(panelStart2Layout);
+        panelStart2Layout.setHorizontalGroup(
+            panelStart2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelStart2Layout.createSequentialGroup()
+                .addGap(101, 101, 101)
+                .addGroup(panelStart2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(bthard, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btmedium, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bteasy, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
-        panelStart1Layout.setVerticalGroup(
-            panelStart1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelStart1Layout.createSequentialGroup()
+        panelStart2Layout.setVerticalGroup(
+            panelStart2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelStart2Layout.createSequentialGroup()
                 .addContainerGap(147, Short.MAX_VALUE)
                 .addComponent(bteasy, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -102,25 +102,16 @@ public class Diffuclty extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelStart1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelStart2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelStart1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(panelStart2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void bteasyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bteasyMouseClicked
-        // TODO add your handling code here:
-        dif ="/Map/map_easy.png";
-        Game.level = new Level(dif);
-        Game.game.start();
-        Game.frame.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_bteasyMouseClicked
 
     private void btmediumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btmediumMouseClicked
         // TODO add your handling code here:
@@ -130,6 +121,15 @@ public class Diffuclty extends javax.swing.JFrame {
         Game.frame.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btmediumMouseClicked
+
+    private void bteasyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bteasyMouseClicked
+        // TODO add your handling code here:
+        dif ="/Map/map_easy.png";
+        Game.level = new Level(dif);
+        Game.game.start();
+        Game.frame.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_bteasyMouseClicked
 
     /**
      * @param args the command line arguments
@@ -173,6 +173,6 @@ public class Diffuclty extends javax.swing.JFrame {
     private javax.swing.JButton bthard;
     private javax.swing.JButton btmedium;
     private javax.swing.JPanel jPanel1;
-    private PanelStart panelStart1;
+    private PanelStart panelStart2;
     // End of variables declaration//GEN-END:variables
 }
