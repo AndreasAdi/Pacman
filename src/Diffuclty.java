@@ -126,7 +126,7 @@ public class Diffuclty extends javax.swing.JFrame {
         Game.level = new Level(dif);
         Game.game.start();
         Game.stop_song();
-        Game.load_song("xx.wav ");// untuk ganti musik 
+        Game.load_song("siren.wav ");// untuk ganti musik 
         Game.frame.setVisible(true);
         this.setVisible(false);
         
@@ -139,7 +139,7 @@ public class Diffuclty extends javax.swing.JFrame {
         Game.level = new Level(dif);
         Game.game.start();
         Game.stop_song();
-        Game.load_song("xx.wav ");// untuk ganti musik 
+        Game.load_song("siren.wav ");// untuk ganti musik 
         Game.frame.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_bteasyMouseClicked
@@ -150,7 +150,7 @@ public class Diffuclty extends javax.swing.JFrame {
         Game.level = new Level(dif);
         Game.game.start();
         Game.stop_song();
-        Game.load_song("xx.wav ");// untuk ganti musik
+        Game.load_song("siren.wav ");// untuk ganti musik
         Game.frame.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_bthardMouseClicked

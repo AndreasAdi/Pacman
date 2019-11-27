@@ -153,6 +153,7 @@ public class Player extends Rectangle {
             if (this.intersects(level.slowing.get(i))) {
                 level.slowing.remove(i);
                 //Game.Score +=10;
+                musicpowerup();
                 Waktu = 0;
                 cekstoping = true;
                 t.start();
@@ -194,6 +195,7 @@ public class Player extends Rectangle {
             if (this.intersects(level.confuse.get(i))) {
                 level.confuse.remove(i);
                 //Game.Score +=10;
+                musicpowerup();
                 Waktu2 = 0;
                 cekconfuse = true;
                 t.start();
@@ -246,6 +248,29 @@ public class Player extends Rectangle {
             AudioInputStream in= null;
         try {
             File soundfile= new File("eating.wav");
+            in = AudioSystem.getAudioInputStream(soundfile);
+            Clip c=AudioSystem.getClip();
+            c.open(in);
+            c.start();
+        } catch (UnsupportedAudioFileException ex) {
+            Logger.getLogger(Player.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Player.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (LineUnavailableException ex) {
+            Logger.getLogger(Player.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } finally {
+            try {
+                in.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Player.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    void musicpowerup(){
+                AudioInputStream in= null;
+        try {
+            File soundfile= new File("powerup.wav");
             in = AudioSystem.getAudioInputStream(soundfile);
             Clip c=AudioSystem.getClip();
             c.open(in);
