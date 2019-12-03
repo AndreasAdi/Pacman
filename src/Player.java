@@ -9,7 +9,6 @@
  * @author Andreas
  */
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
@@ -49,6 +48,7 @@ public class Player extends Rectangle {
     public static boolean cekconfuse;
     int Waktu = 0;
     int Waktu2 = 0;
+    public static boolean cekmenang = false;
     public static AudioStream sound; 
     public Level level; 
     public static ArrayList <Highscore> highscore= new ArrayList<>();
@@ -68,15 +68,33 @@ public class Player extends Rectangle {
         cek_makan();
         cek_stoping();
         cek_Confuse();
+        cek_menang();
         cek_kalah();
+        
+
 
     }
     
     void cek_menang(){
-            if (level.makanan.size() == 0) {
-            //win reset permainan
+            if (level.makanan.size() == 0 && cekmenang == false) {
+           // win reset permainan
             Game.player = new Player(0, 0);
-            Game.level = new Level("/Map/map.png");
+            Game.level = new Level("/Map/map_win.png");
+//            Game.game.start();
+            //Game.game.stop();
+            Musuh.spd=0;
+            JOptionPane.showMessageDialog(null, "Menang");
+        
+//           Diffuclty d = new Diffuclty();
+//           d.setVisible(true);
+//           Game.frame.setVisible(false);
+//           Game.game.stop();
+           musicmenang();
+           cekmenang = true;
+           String namaplayer= JOptionPane.showInputDialog("Nama Player");
+           highscore.add(new Highscore(namaplayer, Game.Score));
+           sort();
+           
         }
     }
     
@@ -100,6 +118,7 @@ public class Player extends Rectangle {
                     Diffuclty d = new Diffuclty();
                     d.setVisible(true);
                     Game.frame.setVisible(false);
+                    Game.load_song("xx.wav");
                     AudioPlayer.player.start(Game.sound);
                     Game.Score=0;
                 } else if (retry == JOptionPane.NO_OPTION) {
@@ -179,7 +198,7 @@ public class Player extends Rectangle {
                             if (Waktu2 <= 0) {
                               Musuh.pathimage = "Src\\Char\\bingung.png";
                                M.setState(0);
-                            } else if (Waktu2 == 5) {
+                            } else if (Waktu2 == 10) {
                               Musuh.pathimage ="Src\\Char\\ghost_0_0.png";
                                M.setState(1);
                                 t.stop();
@@ -225,6 +244,30 @@ public class Player extends Rectangle {
         AudioInputStream in= null;
         try {
             File soundfile= new File("die.wav");
+            in = AudioSystem.getAudioInputStream(soundfile);
+            Clip c=AudioSystem.getClip();
+            c.open(in);
+            c.start();
+        } catch (UnsupportedAudioFileException ex) {
+            Logger.getLogger(Player.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Player.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (LineUnavailableException ex) {
+            Logger.getLogger(Player.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } finally {
+            try {
+                in.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Player.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+        void musicmenang(){
+        AudioPlayer.player.stop(Game.sound);
+        AudioInputStream in= null;
+        try {
+            File soundfile= new File("Win.wav");
             in = AudioSystem.getAudioInputStream(soundfile);
             Clip c=AudioSystem.getClip();
             c.open(in);

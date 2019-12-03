@@ -57,6 +57,8 @@ public class Diffuclty extends javax.swing.JFrame {
         setBackground(new java.awt.Color(0, 0, 0));
 
         bteasy.setBackground(new java.awt.Color(102, 255, 51));
+        bteasy.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        bteasy.setForeground(new java.awt.Color(51, 51, 51));
         bteasy.setText("EASY");
         bteasy.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         bteasy.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -64,8 +66,15 @@ public class Diffuclty extends javax.swing.JFrame {
                 bteasyMouseClicked(evt);
             }
         });
+        bteasy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bteasyActionPerformed(evt);
+            }
+        });
 
         btmedium.setBackground(new java.awt.Color(255, 255, 0));
+        btmedium.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btmedium.setForeground(new java.awt.Color(51, 51, 51));
         btmedium.setText("MEDIUM");
         btmedium.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -74,6 +83,8 @@ public class Diffuclty extends javax.swing.JFrame {
         });
 
         bthard.setBackground(new java.awt.Color(255, 0, 51));
+        bthard.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        bthard.setForeground(new java.awt.Color(51, 51, 51));
         bthard.setText("HARD");
         bthard.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -129,7 +140,7 @@ public class Diffuclty extends javax.swing.JFrame {
         Game.load_song("siren.wav ");// untuk ganti musik 
         Game.frame.setVisible(true);
         this.setVisible(false);
-        
+        Player.cekmenang = false;
         
     }//GEN-LAST:event_btmediumMouseClicked
 
@@ -142,6 +153,7 @@ public class Diffuclty extends javax.swing.JFrame {
         Game.load_song("siren.wav ");// untuk ganti musik 
         Game.frame.setVisible(true);
         this.setVisible(false);
+        Player.cekmenang = false;
     }//GEN-LAST:event_bteasyMouseClicked
 
     private void bthardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bthardMouseClicked
@@ -153,7 +165,13 @@ public class Diffuclty extends javax.swing.JFrame {
         Game.load_song("siren.wav ");// untuk ganti musik
         Game.frame.setVisible(true);
         this.setVisible(false);
+        Player.cekmenang = false;
     }//GEN-LAST:event_bthardMouseClicked
+
+    private void bteasyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bteasyActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_bteasyActionPerformed
 
     /**
      * @param args the command line arguments

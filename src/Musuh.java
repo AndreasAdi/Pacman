@@ -42,7 +42,7 @@ public class Musuh extends Rectangle{
 	
 	private int time = 0;
 	private int targetTime = 60 *4;// Kapan balik jadi random 
-	public int spd = 2; // Kecepatan 
+	public static int spd = 2; // Kecepatan 
 	
 	public void render(Graphics g) {
 		try {

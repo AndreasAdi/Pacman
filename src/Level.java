@@ -57,7 +57,7 @@ public class Level {
 						musuh.add(new Musuh(xx*32, yy*32));
 					}
                                         else if (val== 0xFF00FF00) {
-                                            //Slowing 
+                                            //Stoping
                                                 slowing.add(new Slowing(xx*32, yy*32));
                                         }
                                         else if (val==0xFFFFF600){//power up stroberi
