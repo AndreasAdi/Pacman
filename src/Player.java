@@ -17,8 +17,11 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -52,14 +55,13 @@ public class Player extends Rectangle {
     public static AudioStream sound; 
     public Level level; 
     public static ArrayList <Highscore> highscore= new ArrayList<>();
+    public static ArrayList <Highscore> highscoreeasy= new ArrayList<>();
+    public static ArrayList <Highscore> highscoremedium= new ArrayList<>();
+    public static ArrayList <Highscore> highscorehard= new ArrayList<>();
+    public static String namaplayer;
+    public static String diff = "easy";
     public Player(int x, int y) {
         setBounds(x, y, 32, 32);
-        
-        Player.highscore.add(new Highscore("", 0));
-        Player.highscore.add(new Highscore("", 0));
-        Player.highscore.add(new Highscore("", 0));
-        Player.highscore.add(new Highscore("", 0));
-        Player.highscore.add(new Highscore("", 0));
     }
 
     public void tick() {
@@ -70,7 +72,6 @@ public class Player extends Rectangle {
         cek_Confuse();
         cek_menang();
         cek_kalah();
-        
 
 
     }
@@ -91,10 +92,17 @@ public class Player extends Rectangle {
 //           Game.game.stop();
            musicmenang();
            cekmenang = true;
-           String namaplayer= JOptionPane.showInputDialog("Nama Player");
-           highscore.add(new Highscore(namaplayer, Game.Score));
-           sort();
-           
+           namaplayer= JOptionPane.showInputDialog("Nama Player");
+                if (diff.equals("easy")) {
+                    add_scoreeasy();
+                }
+                if (diff.equals("medium")) {
+                    add_scoremedium();
+                }
+                if (diff.equals("hard")) {
+                    add_scorehard();
+                }
+                save();
         }
     }
     
@@ -106,10 +114,16 @@ public class Player extends Rectangle {
                 //Game.level = new Level("/Map/map.png");
                 AudioPlayer.player.stop(Game.sound);
                 musickalah();
-                String namaplayer= JOptionPane.showInputDialog("Nama Player");
-                highscore.add(new Highscore(namaplayer, Game.Score));
-                sort();
-                System.out.println(highscore.get(5).getNama()+"-"+highscore.get(5).getScore());
+                namaplayer= JOptionPane.showInputDialog("Nama Player");
+                if (diff.equals("easy")) {
+                    add_scoreeasy();
+                }
+                if (diff.equals("medium")) {
+                    add_scoremedium();
+                }
+                if (diff.equals("hard")) {
+                    add_scorehard();
+                }
                 int retry = JOptionPane.showConfirmDialog(null, "Retry", "Game Over", JOptionPane.YES_NO_OPTION);
                 
                 if (retry == JOptionPane.YES_OPTION) {
@@ -124,8 +138,21 @@ public class Player extends Rectangle {
                 } else if (retry == JOptionPane.NO_OPTION) {
                     System.exit(1);
                 }
+                save();
             }
         }
+    }
+    public void add_scoreeasy() {
+        highscoreeasy.add(new Highscore(namaplayer, Game.Score));
+        Collections.sort(highscoreeasy);
+    }
+    public void add_scoremedium() {
+        highscoremedium.add(new Highscore(namaplayer, Game.Score));
+        Collections.sort(highscoremedium);
+    }
+    public void add_scorehard() {
+        highscorehard.add(new Highscore(namaplayer, Game.Score));
+        Collections.sort(highscorehard);
     }
     
     void cekgerak(){
@@ -351,7 +378,38 @@ public class Player extends Rectangle {
 
         return true;
     }
-
+    public void save() {
+        try {
+            // TODO add your handling code here:
+            FileOutputStream fout = new FileOutputStream("save.pacman");
+            ObjectOutputStream oos = new ObjectOutputStream(fout);
+            oos.writeObject(highscoreeasy);
+            oos.writeObject(highscoremedium);
+            oos.writeObject(highscorehard);
+            oos.close();
+            fout.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Player.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Player.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    }
+    public void load() {
+        try {
+            // TODO add your handling code here:
+            FileInputStream fin = new FileInputStream("save.pacman");
+            ObjectInputStream ois = new ObjectInputStream(fin);
+            highscoreeasy = (ArrayList<Highscore>)ois.readObject();
+            highscoremedium = (ArrayList<Highscore>)ois.readObject();
+            highscorehard = (ArrayList<Highscore>)ois.readObject();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Player.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Player.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Player.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    }
     public void render(Graphics g) {
         try {
             if (awal) {

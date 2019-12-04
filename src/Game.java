@@ -52,6 +52,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
         Diffuclty d = new Diffuclty();
         d.setVisible(true);
         load_song(pathlagu);
+        player.load();
     }
     public static void load_song(String path)
     {
@@ -114,36 +115,85 @@ public class Game extends Canvas implements Runnable, KeyListener {
         graphics.drawString("score: " + Score, 650, 20);
          graphics.drawString("________________________" , 641, 35);
         graphics.drawString("Highscore: ", 650, 60);
-        // graphics.drawS
-         for (int i = 0; i < 5; i++) {
-            j=j+20;
-            graphics.setColor(Color.YELLOW);
-            graphics.drawString((i+1)+". " + Player.highscore.get(i).getNama()+" - "+Player.highscore.get(i).getScore(), 650, 60+j);
-            if (i==4) {
-                j =0;
-            }
+        if (Player.diff.equals("easy")) {
+            scoreeasy();
         }
+        if (Player.diff.equals("medium")) {
+            scoremedium();
+        }
+        if (Player.diff.equals("hard")) {
+            scorehard();
+        }
+        // graphics.drawS
+//         for (int i = 0; i < 5; i++) {
+//            j=j+20;
+//            graphics.setColor(Color.YELLOW);
+//            graphics.drawString((i+1)+". " + Player.highscore.get(i).getNama()+" - "+Player.highscore.get(i).getScore(), 650, 60+j);
+//            if (i==4) {
+//                j =0;
+//            }
+//        }
         player.render(graphics);
         level.render(graphics);
         graphics.dispose();
         bS.show();
     }
-    private void score(){
-        BufferStrategy b = getBufferStrategy();
-        if (b == null) {
+    public void scoreeasy() {
+        BufferStrategy bS = getBufferStrategy();
+        if (bS == null) {
             createBufferStrategy(3);
             return;
         }
-        Graphics graphics = b.getDrawGraphics();
+        Graphics graphics = bS.getDrawGraphics();
         Font a = new Font("Arial", Font.BOLD, 20);
         graphics.setFont(a);
+        graphics.setColor(Color.YELLOW);
         for (int i = 0; i < 5; i++) {
             j=j+20;
             graphics.setColor(Color.YELLOW);
-            graphics.drawString(i+". " + Player.highscore.get(i).getNama()+" - "+Player.highscore.get(i).getNama(), 680, 40+j);
+            graphics.drawString((i+1)+". " + Player.highscoreeasy.get(i).getNama()+" - "+Player.highscoreeasy.get(i).getScore(), 650, 60+j);
+            if (i==4) {
+                j =0;
+            }
         }
-        graphics.dispose();
-        b.show();
+    }
+    public void scoremedium() {
+        BufferStrategy bS = getBufferStrategy();
+        if (bS == null) {
+            createBufferStrategy(3);
+            return;
+        }
+        Graphics graphics = bS.getDrawGraphics();
+        Font a = new Font("Arial", Font.BOLD, 20);
+        graphics.setFont(a);
+        graphics.setColor(Color.YELLOW);
+        for (int i = 0; i < 5; i++) {
+            j=j+20;
+            graphics.setColor(Color.YELLOW);
+            graphics.drawString((i+1)+". " + Player.highscoremedium.get(i).getNama()+" - "+Player.highscoremedium.get(i).getScore(), 650, 60+j);
+            if (i==4) {
+                j =0;
+            }
+        }
+    }
+    public void scorehard() {
+        BufferStrategy bS = getBufferStrategy();
+        if (bS == null) {
+            createBufferStrategy(3);
+            return;
+        }
+        Graphics graphics = bS.getDrawGraphics();
+        Font a = new Font("Arial", Font.BOLD, 20);
+        graphics.setFont(a);
+        graphics.setColor(Color.YELLOW);
+        for (int i = 0; i < 5; i++) {
+            j=j+20;
+            graphics.setColor(Color.YELLOW);
+            graphics.drawString((i+1)+". " + Player.highscorehard.get(i).getNama()+" - "+Player.highscorehard.get(i).getScore(), 650, 60+j);
+            if (i==4) {
+                j =0;
+            }
+        }
     }
     @Override
     public void run() {
