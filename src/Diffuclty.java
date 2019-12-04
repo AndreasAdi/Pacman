@@ -155,7 +155,7 @@ public class Diffuclty extends javax.swing.JFrame {
         Game.frame.setVisible(true);
         this.setVisible(false);
         Player.cekmenang = false;
-        
+        Player.diff = "medium";
     }//GEN-LAST:event_btmediumMouseClicked
 
     private void bteasyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bteasyMouseClicked
@@ -168,6 +168,7 @@ public class Diffuclty extends javax.swing.JFrame {
         Game.frame.setVisible(true);
         this.setVisible(false);
         Player.cekmenang = false;
+        Player.diff = "easy";
     }//GEN-LAST:event_bteasyMouseClicked
 
     private void bthardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bthardMouseClicked
@@ -180,6 +181,7 @@ public class Diffuclty extends javax.swing.JFrame {
         Game.frame.setVisible(true);
         this.setVisible(false);
         Player.cekmenang = false;
+        Player.diff = "hard";
     }//GEN-LAST:event_bthardMouseClicked
 
     private void bteasyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bteasyActionPerformed
