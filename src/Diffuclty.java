@@ -41,6 +41,7 @@ public class Diffuclty extends javax.swing.JFrame {
         bteasy = new javax.swing.JButton();
         btmedium = new javax.swing.JButton();
         bthard = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -92,6 +93,13 @@ public class Diffuclty extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Help");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelStart2Layout = new javax.swing.GroupLayout(panelStart2);
         panelStart2.setLayout(panelStart2Layout);
         panelStart2Layout.setHorizontalGroup(
@@ -103,11 +111,17 @@ public class Diffuclty extends javax.swing.JFrame {
                     .addComponent(btmedium, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bteasy, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(106, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelStart2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
         );
         panelStart2Layout.setVerticalGroup(
             panelStart2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelStart2Layout.createSequentialGroup()
-                .addContainerGap(172, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
                 .addComponent(bteasy, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btmedium, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -173,6 +187,12 @@ public class Diffuclty extends javax.swing.JFrame {
         
     }//GEN-LAST:event_bteasyActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        HelpFrame hf= new HelpFrame();
+        hf.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -214,6 +234,7 @@ public class Diffuclty extends javax.swing.JFrame {
     private javax.swing.JButton bteasy;
     private javax.swing.JButton bthard;
     private javax.swing.JButton btmedium;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private PanelStart panelStart2;
     // End of variables declaration//GEN-END:variables
