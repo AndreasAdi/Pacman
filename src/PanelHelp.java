@@ -31,12 +31,11 @@ public class PanelHelp extends javax.swing.JPanel {
         return ABORT;
     }
     BufferedImage img_hantu_bingung;
-    Image img_hantu_diam;
-    Image img_hantu_normal;
-    Image img_player;
-    Image img_power_bingung;
-    Image img_power_diam;
-    ArrayList<JLabel> lbl=new ArrayList<>();
+    BufferedImage img_hantu_diam;
+    BufferedImage img_hantu_normal;
+    BufferedImage img_player;
+    BufferedImage img_power_bingung;
+    BufferedImage img_power_diam;
     /**
      * Creates new form PanelHelp
      */
